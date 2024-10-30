@@ -1,24 +1,23 @@
 spring:
   application:
     name: api-gateway-service
-  config:
-    import: optional:configserver:http://localhost:8888
+  cloud:
     gateway:
-      routes:
-        - id: company-service
-          uri: lb://company-service
+        routes:
+        - id: CARDSERVICE
+          uri: lb://card-service
           predicates:
-            - Path=/api/v1/company/**
+            - Path=/card/**
+        - id: CARDTYPESERVICE
+          uri: lb://card-type-service
+          predicates:
+            - Path=/card-type/**
+
+server:
+  port: 8080
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8082/eureka/
+      defaultZone: http://localhost:8081/eureka/
 
-logging:
-  level:
-    org:
-      springframework:
-        web: info
-
-server:
-  port: 8081
