@@ -8,39 +8,7 @@ spring:
         - id: company-service
           uri: lb://company-service
           predicates:
-            - Path=/api/v1/company/**,/api/v2/company/**
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      probes:
-        enabled: true
-      show-details: always
-  metrics:
-    tags:
-      application: ${spring.application.name}
-    distribution:
-      percentiles-histogram:
-        all: true
-        http.server.requests: true
-  tracing:
-    sampling:
-      probability: 1.0
-  prometheus:
-    metrics:
-      export:
-        step: 10s
-  info:
-    env:
-      enabled: true
-    java:
-      enabled: true
-    os:
-      enabled: true
-
+            - Path=/api/v1/company/**
 eureka:
   client:
     serviceUrl:
